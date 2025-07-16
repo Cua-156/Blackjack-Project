@@ -46,7 +46,7 @@ public class Logic{
             System.out.println("You've already hit 21, You Win!");
         }
         else{
-            while(!userIn.equals("Stand") || !userIn.equals("s") || lost != true){
+            while(!userIn.equals("Stand") && !userIn.equals("s") && !lost){
                 System.out.print("Type Stand/s or Hit/h: ");
                 userIn = in.nextLine();
                 if(userIn.equals("Hit") || userIn.equals("h")){

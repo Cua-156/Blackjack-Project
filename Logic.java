@@ -43,10 +43,10 @@ public class Logic{
 
         System.out.println("Your current total is " + pTotal);
         if(pTotal == 21){
-            System.out.println("You Win!");
+            System.out.println("You've already hit 21, You Win!");
         }
         else{
-            while(!userIn.equals("Stand") && !userIn.equals("s")){
+            while(!userIn.equals("Stand") || !userIn.equals("s") || lost != true){
                 System.out.print("Type Stand/s or Hit/h: ");
                 userIn = in.nextLine();
                 if(userIn.equals("Hit") || userIn.equals("h")){
@@ -54,7 +54,6 @@ public class Logic{
                     if(pTotal == 21){System.out.println("You've hit 21, You Win!");}
                     else if(pTotal > 21){
                         System.out.println("You've Busted");
-                        userIn = "s";
                         lost = true;
                     }
                     else{System.out.println("Your new total is " + pTotal);}
@@ -63,11 +62,13 @@ public class Logic{
                 else{
                     System.out.println("Please enter a valid input");
                 }
+                System.out.println("Debug: userIn = " + userIn);
             }
         }
     }
     private void dealerTurn(){
         if(!lost){
+            System.out.println("Dealer's Turn: ");
             draw("Dealer");
             draw("Dealer");
             while(dTotal < 17){
@@ -76,6 +77,9 @@ public class Logic{
                     System.out.println("The Dealer has busted. You Win!");
                 }
             }
+            if(pTotal > dTotal){System.out.println("The Dealer got " + dTotal + ", which is smaller than your " + pTotal + " so you've Won!");}
+            else if(pTotal == dTotal){System.out.println("Both you and the Dealer got " + dTotal + " so you've tied");}
+            else{System.out.println("The Dealer got " + dTotal + ", which is larger than your " + pTotal + " so you've lost.");}
         }
     }
 
